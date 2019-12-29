@@ -40,11 +40,6 @@ public class HomeActivity extends AppCompatActivity {
         adapter.startListening();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull FirebaseViewHolder holder, int position, @NonNull final Note model) {
                 holder.title.setText(model.getNoteTitle());
                 holder.Desc.setText(model.getNoteDesc());
+                holder.Category.setText(model.getCategory());
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -70,6 +66,7 @@ public class HomeActivity extends AppCompatActivity {
                         Intent intent = new Intent(HomeActivity.this,Main2Activity.class);
                         intent.putExtra("title",model.getNoteTitle());
                         intent.putExtra("Desc",model.getNoteDesc());
+                        intent.putExtra("Category",model.getCategory());
                         startActivity(intent);
 
                     }
